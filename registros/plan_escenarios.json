@@ -1,0 +1,29 @@
+{
+  "org": "BILLING",
+  "d0": "ITG_Plan_MRR_In_Number__c",
+  "d1": "Preferred_Subdomain__c",
+  "d2": "Account_Status__c",
+  "flujo": "Account_Transition_Status_Update",
+  "dependientes": {
+    "ITG_Plan_MRR_In_Number__c": 0,
+    "Preferred_Subdomain__c": 5,
+    "Account_Status__c": 26,
+    "Account_Transition_Status_Update": 0
+  },
+  "componentes_iniciales": [
+    "CustomField:Account.ITG_Plan_MRR_In_Number__c",
+    "CustomField:Account.Preferred_Subdomain__c",
+    "CustomField:Account.Account_Status__c",
+    "Flow:Account_Transition_Status_Update"
+  ],
+  "tareas": {
+    "1": "Crea en Account un campo de texto de 50 caracteres llamado Tesis_Nuevo_{C}__c y despliégalo al sandbox BILLING.",
+    "2": "Cambia la etiqueta del campo ITG_Plan_MRR_In_Number__c de Account a 'ITG Plan MRR In Number {C}' y despliégalo al sandbox BILLING.",
+    "3": "Cambia el texto de ayuda del campo Preferred_Subdomain__c de Account a 'Prueba tesis {C}' y despliégalo al sandbox BILLING.",
+    "4": "Crea en Account un campo de texto de 50 caracteres llamado Tesis_Nuevo4_{C}__c y despliégalo al sandbox BILLING.",
+    "5": "Cambia la descripción del flujo Account_Transition_Status_Update a 'Prueba tesis {C}' y despliégalo al sandbox BILLING.",
+    "6": "Elimina del sandbox BILLING el campo Tesis_Nuevo_{C}__c de Account.",
+    "7": "Cambia el texto de ayuda del campo Account_Status__c de Account a 'Prueba tesis {C}' y despliégalo al sandbox BILLING.",
+    "8": "Elimina del sandbox BILLING el campo Preferred_Subdomain__c de Account."
+  }
+}
