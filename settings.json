@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "defaultMode": "default",
+    "disableAutoMode": "disable",
+    "disableBypassPermissionsMode": "disable",
+    "allow": [
+      "Bash(py .claude/index/build.py)",
+      "Bash(py .claude/index/build.py:*)",
+      "Bash(py .claude/index/build.py *)",
+      "Bash(py .claude/index/q.py:*)",
+      "Bash(py .claude/index/q.py *)",
+      "Bash(py .claude/index/graph.py:*)",
+      "Bash(py .claude/index/graph.py *)",
+      "Bash(py .claude/index/freshness.py)",
+      "Bash(py .claude/index/freshness.py:*)",
+      "Bash(py .claude/index/freshness.py *)",
+      "mcp__salesforce__get_username",
+      "mcp__salesforce__run_soql_query",
+      "Bash(sf data query *)",
+      "PowerShell(sf data query *)",
+      "Bash(sf org list *)",
+      "PowerShell(sf org list *)",
+      "Bash(sf org display *)",
+      "PowerShell(sf org display *)",
+      "Edit",
+      "Write"
+    ],
+    "deny": [
+      "Bash(sfdx *)",
+      "PowerShell(sfdx *)",
+      "Edit(/.claude/**)",
+      "Edit(/.mcp.json)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__.*__deploy_metadata|Bash|PowerShell|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "${CLAUDE_PROJECT_DIR}/.claude/hooks/taxonomia.js"
+            ],
+            "timeout": 120,
+            "onFailure": "block",
+            "statusMessage": "Taxonomia: calculando nivel"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py .claude/index/freshness.py 2>/dev/null || true",
+            "timeout": 15,
+            "statusMessage": "Checking metadata index"
+          }
+        ]
+      }
+    ]
+  }
+}
