@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "deny": [
+      "mcp__salesforce__run_soql_query",
+      "Bash(sf data query *)",
+      "Bash(sf api *)"
+    ]
+  }
+}

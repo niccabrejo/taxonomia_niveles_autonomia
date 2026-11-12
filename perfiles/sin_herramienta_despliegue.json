@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "deny": [
+      "mcp__salesforce__deploy_metadata",
+      "Bash(sf project deploy *)",
+      "Bash(sf project delete *)",
+      "Bash(sf deploy *)"
+    ]
+  }
+}
